@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neural_network import MLPRegressor
+from scipy import stats
 
 df = pd.read_csv('dataset.csv')
 df = df.reset_index()
@@ -13,7 +14,7 @@ y_sin = np.asarray(list((df['output2']).values))
 
 activations = ['identity', 'logistic', 'relu']
 solvers = ['sgd', 'adam', 'lbfgs']
-hidden_layers = [(100, 1), (20, 5, 100, 2)]
+hidden_layers = [(100, 1), (1000, 10, 1000, 10)]
 
 clf = list()
 scores = []
@@ -67,8 +68,5 @@ for i in activations:
 
             a += 1
 
-
-print('average: ', np.average(int_scores))
-print('median: ', np.median(int_scores))
-print('minimum: ', np.min(int_scores))
-print('maximum: ', np.max(int_scores))
+print('quadratic', stats.describe(y_quadratic), sep='; ', file=open('stats.txt', 'a'))
+print('sin', stats.describe(y_sin), sep='; ', file=open('stats.txt', 'a'))
