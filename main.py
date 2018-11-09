@@ -38,7 +38,7 @@ for i in activations:
             pred = clf[a].predict(X_f)
             plt.plot(X_f, y_quadratic, 'o')
             plt.plot(X_f, pred, 'o')
-            plt.savefig("plots/"+j + '' + i + 'quad.pdf')
+            plt.savefig("plots/"+j + '' + i + '' + str(hidden_layers.index(k)) + 'quad.pdf')
             plt.show()
 
             a += 1
@@ -62,7 +62,7 @@ for i in activations:
             pred = clf[a].predict(X_f)
             plt.plot(X_f, y_sin, 'o')
             plt.plot(X_f, pred, 'o')
-            plt.savefig("plots/"+j + '' + i + 'sin.pdf')
+            plt.savefig("plots/"+j + '' + i + '' + str(hidden_layers.index(k)) + 'sin.pdf')
             plt.show()
 
             a += 1
