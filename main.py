@@ -17,7 +17,8 @@ solvers = ['sgd', 'adam', 'lbfgs']
 hidden_layers = [(100, 1), (1000, 10, 1000, 10)]
 
 clf = list()
-scores = []
+quadratic_scores = []
+sin_scores = []
 int_scores = []
 
 a = 0
@@ -34,6 +35,7 @@ for i in activations:
 
             print('quadratic', score, i, j, k, sep='; ', file=open('scores.txt', 'a'))
             if score != "Unsuccessful":
+                quadratic_scores.append(score)
                 int_scores.append(score)
 
             pred = clf[a].predict(X_f)
@@ -58,6 +60,7 @@ for i in activations:
 
             print('sin', score, i, j, k, sep='; ', file=open('scores.txt', 'a'))
             if score != "Unsuccessful":
+                sin_scores.append(score)
                 int_scores.append(score)
 
             pred = clf[a].predict(X_f)
@@ -68,5 +71,5 @@ for i in activations:
 
             a += 1
 
-print('quadratic', stats.describe(y_quadratic), sep='; ', file=open('stats.txt', 'a'))
-print('sin', stats.describe(y_sin), sep='; ', file=open('stats.txt', 'a'))
+print('quadratic', stats.describe(quadratic_scores), sep='; ', file=open('stats.txt', 'a'))
+print('sin', stats.describe(sin_scores), sep='; ', file=open('stats.txt', 'a'))
